@@ -1,12 +1,17 @@
 CouchDB ViewStrap
 =================
 
-Create databases and views for CouchDB from YAML configuration
+Simple project to create databases and views for [CouchDB](https://couchdb.apache.org/) from YAML configuration files.
 
 Requires Python >2.6 and 3.x
 
-h1. Usage
-...
+## Usage
+
+```
+$ python couchvs/couchvs.py  --username guest --password guest examples/*.yaml
+```
+
+```
 $ python couchvs/couchvs.py --help
 usage: couchvs/couchvs.py [-h] [--url URL] [--host HOST] [--username USERNAME]
                           [--password PASSWORD] [-v] [-q]
@@ -25,11 +30,13 @@ optional arguments:
   --password PASSWORD  CouchDB server password (ie. guest)
   -v, --verbose
   -q, --quiet
-...
+```
 
+## Configuration
 
-h1. Configuration example
-...
+Configuration is stored in the YAML format. One database per file. There is currently no support for recursively directory structures.
+See [example-database.yaml](https://github.com/hekar/couchdb-viewstrap/blob/master/examples/example-database.yaml)
+```
 database: example-database
 design: example-design
 language: javascript
@@ -49,4 +56,4 @@ views:
             function(test) {
                 emit(doc.key, doc);
             }
-...
+```
