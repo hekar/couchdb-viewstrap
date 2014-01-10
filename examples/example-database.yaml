@@ -1,0 +1,19 @@
+database: example-database
+design: example-design
+language: javascript
+views:
+    example-view:
+        map: |
+            function(doc) {
+                if (doc.key.contains('hello'))
+                    emit(doc.key, doc);
+            }
+        reduce: |
+            function(key, values) {
+                return true;
+            }
+    second-view:
+        map: |
+            function(test) {
+                emit(doc.key, doc);
+            }
